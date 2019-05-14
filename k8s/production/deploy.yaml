@@ -31,7 +31,9 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: 4001
+    protocol: TCP
   selector:
     app: myapp

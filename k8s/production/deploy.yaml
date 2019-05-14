@@ -2,23 +2,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deploy
+  name: myapp-deploy
   labels:
-    app: app
+    app: myapp
 spec:
   replicas: 4
   selector:
     matchLabels:
-      app: app
+      app: myapp
   template:
     metadata:
       labels:
-        app: app
+        app: myapp
         env: production
     spec:
       containers:
-      - name: app
-        image: mycr1257.azurecr.io/app:v1
+      - name: myapp
+        image: mycr1257.azurecr.io/myapp:v1
         ports:
         - containerPort: 4001
       imagePullSecrets:
@@ -27,12 +27,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app
+  name: myapp
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 4001
   selector:
-    app: app
-    
+    app: myapp

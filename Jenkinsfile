@@ -1,9 +1,9 @@
 node {
   def acr = 'mycr1257.azurecr.io'
-  def appName = 'app'
+  def appName = 'myapp'
   def imageName = "${acr}/${appName}"
   def imageTag = "${imageName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-  def appRepo = "mycr1257.azurecr.io/app:v1"
+  def appRepo = "mycr1257.azurecr.io/myapp:v1"
 
   checkout scm
   

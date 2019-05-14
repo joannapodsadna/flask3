@@ -24,8 +24,8 @@ spec:
       imagePullSecrets:
       - name: kama-kama
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: myapp
 spec:

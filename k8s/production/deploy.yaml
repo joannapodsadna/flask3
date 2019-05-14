@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: mysupercr1257.azurecr.io/app:latest
+        image: mycr1257.azurecr.io/app:lates
         ports:
         - containerPort: 4001
       imagePullSecrets:

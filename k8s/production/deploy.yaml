@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deploy
+  labels:
+    app: app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+        env: production
+    spec:
+      containers:
+      - name: app
+        image: mysupercr1257.azurecr.io/app:latest
+        ports:
+        - containerPort: 4001
+      imagePullSecrets:
+      - name: kama-kama
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 4001
+  selector:
+    app: app
+---

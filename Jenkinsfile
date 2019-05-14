@@ -31,7 +31,7 @@ node {
         // Change deployed image in master to the one we just built
         sh("sed -i.bak 's#${appRepo}#${imageTag}#' ./k8s/production/*.yaml")
         sh("sudo kubectl --kubeconfig ~joanna/.kube/config --namespace=prod apply -f k8s/production/")
-        sh("echo http://`kubectl --namespace=prod get service/${appName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${appName}")
+        sh("echo http://`sudo kubectl --kubeconfig ~joanna/.kube/config --namespace=prod get service/${appName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${appName}")
         break
 
     // Roll out a dev environment

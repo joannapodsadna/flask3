@@ -11,7 +11,7 @@ def hello_world():
 
 @app.route('/version')
 def index():
-   return "version 0.0.8"
+   return "version 0.0.5"
 
 @app.route('/cpu', methods=['POST', 'GET'])
 def cpu():

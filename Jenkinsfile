@@ -23,7 +23,7 @@ node {
         // Change deployed image in canary to the one we just built
         sh("sed -i.bak 's#${appRepo}#${imageTag}#' ./k8s/canary/*.yaml")
         sh("sudo kubectl --kubeconfig ~joanna/.kube/config --namespace=prod apply -f k8s/canary/")
-        sh("echo http://`kubectl --namespace=prod get service/${appName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${appName}")
+        sh("echo http://`sudo kubectl -kubeconfig ~joanna/.kube/config --namespace=prod get service/${appName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${appName}")
         break
 
     // Roll out to production

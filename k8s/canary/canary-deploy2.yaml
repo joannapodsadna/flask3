@@ -36,5 +36,5 @@ spec:
     targetPort: 4001
     protocol: TCP
   selector:
-    app: myap
+    app: myapp
     

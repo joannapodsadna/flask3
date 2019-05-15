@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploy
+  labels:
+    app: myapp
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+        env: canary
+    spec:
+      containers:
+      - name: myapp
+        image: mycr1257.azurecr.io/myapp:v1
+        ports:
+        - containerPort: 4001
+      imagePullSecrets:
+      - name: kama-kama
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: myapp
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 4001
+    protocol: TCP
+  selector:
+    app: myapp
